@@ -4,7 +4,7 @@ export default {
     changeDisplayLanguageInfo: 'Wählen Sie Ihre bevorzugte Anzeigesprache',
     nav: {
         audits: 'Audits',
-        vulnerabilities: 'Schwachstellen',
+        vulnerabilities: 'Anforderungen',
         data: 'Daten',
     },
     btn: {
