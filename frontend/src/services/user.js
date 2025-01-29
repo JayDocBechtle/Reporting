@@ -74,7 +74,7 @@ export default {
     },
 
     isInit() {
-        return (Vue.prototype.$axios.get(`users/init`, {timeout: 10000}));
+        return (Vue.prototype.$axios.get(`users/init`, {timeout: 50000}));
     },
 
     isAuth() {

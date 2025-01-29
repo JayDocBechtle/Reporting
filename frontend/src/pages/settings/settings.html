@@ -49,6 +49,75 @@
                     </q-item>
                 </q-card-section>
                 <q-separator />
+
+                <!-- Reifegrad------------------------------------->
+                <q-card-section>
+                    <div class="text-bold">{{$t('reifegrad')}}</div>
+                    <br/>
+                    <div class="text-grey-8">{{$t('changeReifegradColorsDescription')}}</div>
+                    <br/>
+                    <q-list>
+                        <q-item>
+                            <q-item-section class="col-md-2">
+                                <label class="vertical-center">{{$t('predictable')}} : </label>
+                            </q-item-section>
+                            <q-item-section class="col-md-1">
+                                <input type="color" id="colorpicker" v-model="settings.report.public.reifegradColors.predictableColor"/>
+                            </q-item-section>
+                            <q-item-section class="col-md-2">
+                                <label for="colorpicker" class="vertical-center">{{$t('currentColor')}}: {{settings.report.public.reifegradColors.predictableColor}}</label>
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section class="col-md-2">
+                                <label class="vertical-center">{{$t('established')}} : </label>
+                            </q-item-section>
+                            <q-item-section class="col-md-1">
+                                <input type="color" id="colorpicker" v-model="settings.report.public.reifegradColors.establishedColor"/>
+                            </q-item-section>
+                            <q-item-section class="col-md-2">
+                                <label for="colorpicker" class="vertical-center">{{$t('currentColor')}}: {{settings.report.public.reifegradColors.establishedColor}}</label>
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section class="col-md-2">
+                                <label class="vertical-center">{{$t('controlled')}} : </label>
+                            </q-item-section>
+                            <q-item-section class="col-md-1">
+                                <input type="color" id="colorpicker" v-model="settings.report.public.reifegradColors.controlledColor"/>
+                            </q-item-section>
+                            <q-item-section class="col-md-2">
+                                <label for="colorpicker" class="vertical-center">{{$t('currentColor')}}: {{settings.report.public.reifegradColors.controlledColor}}</label>
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section class="col-md-2">
+                                <label class="vertical-center">{{$t('completed')}} : </label>
+                            </q-item-section>
+                            <q-item-section class="col-md-1">
+                                <input type="color" id="colorpicker" v-model="settings.report.public.reifegradColors.completedColor"/>
+                            </q-item-section>
+                            <q-item-section class="col-md-2">
+                                <label for="colorpicker" class="vertical-center">{{$t('currentColor')}}: {{settings.report.public.reifegradColors.completedColor}}</label>
+                            </q-item-section>
+                        </q-item>
+                        <q-item>
+                            <q-item-section class="col-md-2">
+                                <label class="vertical-center">{{$t('incomplete')}} : </label>
+                            </q-item-section>
+                            <q-item-section class="col-md-1">
+                                <input type="color" id="colorpicker" v-model="settings.report.public.reifegradColors.incompleteColor"/>
+                            </q-item-section>
+                            <q-item-section class="col-md-2">
+                                <label for="colorpicker" class="vertical-center">{{$t('currentColor')}}: {{settings.report.public.reifegradColors.incompleteColor}}</label>
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                </q-card-section>
+
+
+                <q-separator />
+
                 <q-card-section>
                     <div class="text-bold">{{$t('cvssColors')}}</div>
                     <br/>

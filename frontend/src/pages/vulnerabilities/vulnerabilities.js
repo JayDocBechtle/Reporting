@@ -50,6 +50,7 @@ export default {
             errors: {title: ''},
             // Selected or New Vulnerability
             currentVulnerability: {
+                reifegrad: '',
                 cvssv3: '',
                 priority: '',
                 remediationComplexity: '',

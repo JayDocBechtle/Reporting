@@ -37,7 +37,9 @@ mongoose.Promise = global.Promise;
 // Trim all Strings
 mongoose.Schema.Types.String.set('trim', true);
 
-mongoose.connect(`mongodb://${config.database.server}:${config.database.port}/${config.database.name}`, {});
+mongoose.connect(`mongodb://${config.database.server}:${config.database.port}/${config.database.name}`, {useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 30000,});
 
 // Models import
 require('./models/user');

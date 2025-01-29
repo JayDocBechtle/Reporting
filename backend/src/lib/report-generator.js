@@ -291,6 +291,19 @@ function cvssStrToObject(cvss) {
 }
 
 async function prepAuditData(data, settings) {
+    /**Refegrad Colors for table cells */
+    var incompleteColor = settings.report.public.reifegradColors.incompleteColor.replace('#', ''); //default of blue ("#4A86E8")
+    var completedColor = settings.report.public.reifegradColors.completedColor.replace('#', ''); //default of green ("#008000")
+    var controlledColor = settings.report.public.reifegradColors.controlledColor.replace('#', ''); //default of yellow ("#f9a009")
+    var establishedColor = settings.report.public.reifegradColors.establishedColor.replace('#', ''); //default of red ("#fe0000")
+    var predictableColor = settings.report.public.reifegradColors.predictableColor.replace('#', ''); //default of black ("#212121")
+
+    var cellIncompleteColor = '<w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="' + incompleteColor + '"/></w:tcPr>';
+    var cellCompletedColor = '<w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="'+completedColor+'"/></w:tcPr>';
+    var cellControlledColor = '<w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="'+controlledColor+'"/></w:tcPr>';
+    var cellEstablishedColor = '<w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="'+establishedColor+'"/></w:tcPr>';
+    var cellPredictableColor = '<w:tcPr><w:shd w:val="clear" w:color="auto" w:fill="'+predictableColor+'"/></w:tcPr>';
+
     /** CVSS Colors for table cells */
     var noneColor = settings.report.public.cvssColors.noneColor.replace('#', ''); //default of blue ("#4A86E8")
     var lowColor = settings.report.public.cvssColors.lowColor.replace('#', ''); //default of green ("#008000")
@@ -360,6 +373,7 @@ async function prepAuditData(data, settings) {
         var tmpFinding = {
             title: finding.title || "",
             vulnType: $t(finding.vulnType) || "",
+            reifegrad: finding.reifegrad || "",
             description: await splitHTMLParagraphs(finding.description),
             observation: await splitHTMLParagraphs(finding.observation),
             remediation: await splitHTMLParagraphs(finding.remediation),
@@ -374,6 +388,14 @@ async function prepAuditData(data, settings) {
             retestStatus: finding.retestStatus || "",
             retestDescription: await splitHTMLParagraphs(finding.retestDescription)
         }
+
+        // Handle Reifegrad
+        if (tmpFinding.reifegrad === "Incomplete") tmpFinding.reifegradColor = cellIncompleteColor
+        else if (tmpFinding.reifegrad === "Completed") tmpFinding.reifegradColor = cellCompletedColor
+        else if (tmpFinding.reifegrad === "Controlled") tmpFinding.reifegradColor = cellControlledColor
+        else if (tmpFinding.reifegrad === "Established") tmpFinding.reifegradColor = cellEstablishedColor
+        else if (tmpFinding.reifegrad === "Predictable") tmpFinding.reifegradColor = cellPredictableColor
+        
         // Handle CVSS
         tmpFinding.cvss = {
             vectorString: tmpCVSS.vectorString || "",

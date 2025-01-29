@@ -208,6 +208,21 @@
             </div>
         </q-card-section>
         <q-card-section>
+            <div class="q-col-gutter-md row">
+                <q-select
+                :label="$t('Reifegrad')"
+                stack-label
+                class="col-md-6"
+                v-model="currentVulnerability.reifegrad"
+                :options="[{label: $t('Unvollständig'), value: 0},{label: $t('Durchgeführt'), value: 1},{label: $t('Gesteuert'), value: 2},{label: $t('Etabliert'), value: 3},{label: $t('Vorhersagbar'), value: 4}]"
+                map-options
+                emit-value
+                options-sanitize
+                outlined
+                />
+            </div>
+        </q-card-section>
+        <q-card-section>
             <q-field borderless :label="$t('description')" stack-label>
                 <template v-slot="control">
                     <basic-editor noAffix v-model="currentVulnerability.details[currentDetailsIndex].description" />
@@ -221,22 +236,23 @@
                 </template>
             </q-field>
         </q-card-section>
-        <q-card-section>
+        <!-- CVSS Score Calculator + Remidation Complexity and Priority -->
+        <!-- <q-card-section>
             <div class="col-md-12">
                 <cvss-calculator
                 v-model="currentVulnerability.cvssv3"
                 @cvssScoreChange="currentVulnerability.cvssScore = $event"
                 />
             </div>
-        </q-card-section>
-        <q-card-section>
+        </q-card-section> -->
+        <!-- <q-card-section>
             <q-field borderless :label="$t('remediation')" stack-label>
                 <template v-slot="control">
                     <basic-editor noAffix v-model="currentVulnerability.details[currentDetailsIndex].remediation" />
                 </template>
             </q-field>
-        </q-card-section>
-        <q-card-section>
+        </q-card-section> -->
+        <!-- <q-card-section>
             <div class="q-col-gutter-md row">
                 <q-select
                 :label="$t('remediationComplexity')"
@@ -261,7 +277,7 @@
                 outlined
                 />
             </div>
-        </q-card-section>
+        </q-card-section> -->
         <q-card-section>
             <textarea-array :label="$t('references')" v-model="currentVulnerability.details[currentDetailsIndex].references" />
         </q-card-section>

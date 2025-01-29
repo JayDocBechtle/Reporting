@@ -10,6 +10,13 @@ const SettingSchema = new Schema({
     report: { 
         enabled: {type: Boolean, default: true},
         public: {
+            reifegradColors: {
+                predictableColor: { type: String, default: "#00e30e", validate: [colorValidator, 'Invalid color'] },
+                establishedColor: { type: String, default: "#01930a ", validate: [colorValidator, 'Invalid color'] },
+                controlledColor: { type: String, default: "#748c47", validate: [colorValidator, 'Invalid color'] },
+                completedColor: { type: String, default: "#e4e41b", validate: [colorValidator, 'Invalid color'] },
+                incompleteColor: { type: String, default: "#e41b1b", validate: [colorValidator, 'Invalid color'] }
+            },
             cvssColors: {
                 noneColor: { type: String, default: "#4a86e8", validate: [colorValidator, 'Invalid color'] },
                 lowColor: { type: String, default: "#008000", validate: [colorValidator, 'Invalid color'] },
