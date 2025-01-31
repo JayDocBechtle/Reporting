@@ -373,7 +373,7 @@ async function prepAuditData(data, settings) {
         var tmpFinding = {
             title: finding.title || "",
             vulnType: $t(finding.vulnType) || "",
-            reifegrad: finding.reifegrad || "",
+            reifegrad: finding.reifegrad || 0,
             description: await splitHTMLParagraphs(finding.description),
             observation: await splitHTMLParagraphs(finding.observation),
             remediation: await splitHTMLParagraphs(finding.remediation),
@@ -390,12 +390,12 @@ async function prepAuditData(data, settings) {
         }
 
         // Handle Reifegrad
-        if (tmpFinding.reifegrad === "Incomplete") tmpFinding.reifegradColor = cellIncompleteColor
-        else if (tmpFinding.reifegrad === "Completed") tmpFinding.reifegradColor = cellCompletedColor
-        else if (tmpFinding.reifegrad === "Controlled") tmpFinding.reifegradColor = cellControlledColor
-        else if (tmpFinding.reifegrad === "Established") tmpFinding.reifegradColor = cellEstablishedColor
-        else if (tmpFinding.reifegrad === "Predictable") tmpFinding.reifegradColor = cellPredictableColor
-        
+        if (tmpFinding.reifegrad === 0) tmpFinding.reifegradColor = cellIncompleteColor
+        else if (tmpFinding.reifegrad === 1) tmpFinding.reifegradColor = cellCompletedColor
+        else if (tmpFinding.reifegrad === 2) tmpFinding.reifegradColor = cellControlledColor
+        else if (tmpFinding.reifegrad === 3) tmpFinding.reifegradColor = cellEstablishedColor
+        else if (tmpFinding.reifegrad === 4) tmpFinding.reifegradColor = cellPredictableColor
+
         // Handle CVSS
         tmpFinding.cvss = {
             vectorString: tmpCVSS.vectorString || "",

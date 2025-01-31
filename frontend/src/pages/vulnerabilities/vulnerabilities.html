@@ -387,6 +387,21 @@
             </div>
         </q-card-section>
         <q-card-section>
+            <div class="q-col-gutter-md row">
+                <q-select
+                :label="$t('Reifegrad')"
+                stack-label
+                class="col-md-6"
+                v-model="currentVulnerability.reifegrad"
+                :options="[{label: $t('Unvollständig'), value: 0},{label: $t('Durchgeführt'), value: 1},{label: $t('Gesteuert'), value: 2},{label: $t('Etabliert'), value: 3},{label: $t('Vorhersagbar'), value: 4}]"
+                map-options
+                emit-value
+                options-sanitize
+                outlined
+                />
+            </div>
+        </q-card-section>
+        <q-card-section>
             <q-field borderless :label="$t('description')" stack-label class="basic-editor">
                 <template v-slot="control">
                     <basic-editor noAffix v-model="currentVulnerability.details[currentDetailsIndex].description" />
@@ -531,6 +546,21 @@
                         />
                     </q-card-section>
                     <q-card-section>
+                        <div class="q-col-gutter-md row">
+                            <q-select
+                            :label="$t('Reifegrad')"
+                            stack-label
+                            class="col-md-6"
+                            v-model="currentVulnerability.reifegrad"
+                            :options="[{label: $t('Unvollständig'), value: 0},{label: $t('Durchgeführt'), value: 1},{label: $t('Gesteuert'), value: 2},{label: $t('Etabliert'), value: 3},{label: $t('Vorhersagbar'), value: 4}]"
+                            map-options
+                            emit-value
+                            options-sanitize
+                            outlined
+                            />
+                        </div>
+                    </q-card-section>
+                    <q-card-section>
                         <q-field borderless :label="$t('description')" stack-label class="basic-editor">
                             <template v-slot="control">
                                 <basic-editor noAffix v-model="currentVulnerability.details[currentDetailsIndex].description" />
@@ -655,6 +685,21 @@
                                 option-label="language"
                                 emit-value
                                 map-options
+                                readonly
+                                options-sanitize
+                                outlined
+                                />
+                            </q-card-section>
+                            <q-card-section class="q-col-gutter-md row">
+                                <q-select
+                                :bg-color="(currentVulnerability.reifegrad != update.reifegrad)?'diffbackground':''"
+                                :label="$t('reifegrad')"
+                                stack-label
+                                class="col-md-6"
+                                v-model="update.reifegrad"
+                                :options="[{label: $t('Unvollständig'), value: 0},{label: $t('Durchgeführt'), value: 1},{label: $t('Gesteuert'), value: 2},{label: $t('Etabliert'), value: 3},{label: $t('Vorhersagbar'), value: 4}]"
+                                map-options
+                                emit-value
                                 readonly
                                 options-sanitize
                                 outlined
